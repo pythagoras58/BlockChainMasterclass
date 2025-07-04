@@ -7,13 +7,35 @@ public class Block {
     public String previousHash;
     private String data;
     private long timestamp;
-    private long nonce;
+    private int nonce;
 
     public Block(String data, String previousHash) {
         this.data = data;
         this.previousHash = previousHash;
         this.timestamp = new Date().getTime();
         this.nonce = 0;
-        this.hash = "";
+        this.hash = calculateHash();
+    }
+
+
+    public String calculateHash(){
+        // Combine all relevant data to create the hash
+        String calculatedHash = StringUtil.applySha256(
+                previousHash + Long.toString(timestamp)
+                        + Integer.toString(nonce) + data
+        );
+        return calculatedHash;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public int getNonce() {
+        return nonce;
     }
 }
