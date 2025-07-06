@@ -40,12 +40,5 @@ public class Block {
     }
 
 
-    public String calculateHash(){
-        // Combine all relevant data to create the hash
-        String calculatedHash = StringUtil.applySha256(
-                previousHash + Long.toString(timestamp)
-                        + Integer.toString(nonce) + data
-        );
-        return calculatedHash;
-    }
+
 }
