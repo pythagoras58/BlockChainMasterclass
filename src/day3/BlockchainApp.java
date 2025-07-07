@@ -1,5 +1,6 @@
 package day3;
 
+import com.google.gson.GsonBuilder;
 import day1.Block;
 
 import java.util.ArrayList;
@@ -16,11 +17,24 @@ public class BlockchainApp {
         blockchain.add(new Block("Hey I'm the third block", blockchain.get(blockchain.size()-1).hash));
 
 
-        System.out.println("First block: " + blockchain.get(blockchain.size()-1).hash);
-        System.out.println("Second block: " + blockchain.get(blockchain.size()-1).hash);
-        System.out.println("Third block: " + blockchain.get(blockchain.size()-1).hash);
 
+        String blockChainJson = new GsonBuilder().setPrettyPrinting().create().toJson(blockchain);
+        System.out.println("\nThe block chain: ");
+        System.out.println(blockChainJson);
 
+    }
 
+    public static Boolean isChainValid(){
+        Block currentBlock;
+        Block previousBlock;
+
+        //loop through blockchain to check hashes:
+        for(int i = 0; i < blockchain.size(); i++){
+            currentBlock = blockchain.get(i);
+            previousBlock = blockchain.get(i-1);
+
+        }
+
+        return true;
     }
 }
